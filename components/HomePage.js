@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image, View, ScrollView, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, View, ScrollView, Text  } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Actions } from 'react-native-router-flux';
 import data from '../openapi.json';
 
 const Homepage = () => {
@@ -15,7 +17,10 @@ const Homepage = () => {
                     style={{ height: 400, width: '100%' }} >
                     {
                     data.map((flags, index) => (
-                        <View style={styles.card}>
+                        <TouchableOpacity 
+                            style={styles.card}
+                            onPress={() => Actions.infos() }
+                            >
                             <Image 
                                 key={index}
                                 source= {{ uri: flags.flag}}
@@ -23,9 +28,9 @@ const Homepage = () => {
                                 
                             />
                             <View style={styles.infos} key={flags.name}>
-                                <Text style={styles.text}>{flags.name}</Text>
+                                <Text style={styles.text}on  >{flags.name}</Text>
                             </View>
-                        </View>
+                        </TouchableOpacity >
                     ))
                     }
                 </ScrollView>
