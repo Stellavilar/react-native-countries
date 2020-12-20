@@ -1,18 +1,17 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-const Informations = () => {
+const Informations = ({text, capital, people, population, area, flag, languages}) => {
     return (
         <View style={styles.container}>
-            <Text>
-                test
-            </Text>
+ 
         </View>
     )
 };
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: '#B6D8F9',
     }
 

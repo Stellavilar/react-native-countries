@@ -19,7 +19,15 @@ const Homepage = () => {
                     data.map((flags, index) => (
                         <TouchableOpacity 
                             style={styles.card}
-                            onPress={() => Actions.infos() }
+                            onPress={() => Actions.infos({
+                                text: flags.name,
+                                capital: flags.capital,
+                                population: flags.population,
+                                area: flags.area,
+                                people: flags.demonym,
+                                languages: flags.languages.map((language)=> language.name),
+                                flag: flags.flag
+                            }) }
                             >
                             <Image 
                                 key={index}
@@ -28,7 +36,7 @@ const Homepage = () => {
                                 
                             />
                             <View style={styles.infos} key={flags.name}>
-                                <Text style={styles.text}on  >{flags.name}</Text>
+                                <Text style={styles.text} key={flags.name}  >{flags.name}</Text>
                             </View>
                         </TouchableOpacity >
                     ))
