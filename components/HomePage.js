@@ -7,12 +7,12 @@ const Homepage = () => {
     return (
         <View style={styles.container} >
             <Image source={require('../img/countries.png')}/>
-            <View style={{ width: 500 }}>
+            <View style={{ width: '100%' }}>
                 <ScrollView 
                     pagingEnabled 
                     horizontal 
                     showsHorizontalScrollIndicator={false}
-                    style={{ height: 400, width: 500 }} >
+                    style={{ height: 400, width: '100%' }} >
                     {
                     data.map((flags, index) => (
                         <View style={styles.card}>
@@ -20,9 +20,10 @@ const Homepage = () => {
                                 key={index}
                                 source= {{ uri: flags.flag}}
                                 style={styles.flag}
+                                
                             />
-                            <View style={styles.infos}>
-                                <Text key={flags.name} style={styles.text}>{flags.name}</Text>
+                            <View style={styles.infos} key={flags.name}>
+                                <Text style={styles.text}>{flags.name}</Text>
                             </View>
                         </View>
                     ))
@@ -38,12 +39,11 @@ const Homepage = () => {
 const styles = StyleSheet.create ({
 
     flag: {
-        width: 440,
+        width: '100%',
         height: 300,
         resizeMode: 'cover',
         borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        marginRight: 10
+        borderTopRightRadius: 10
     },
     container: {
         flex: 1,
@@ -52,16 +52,20 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
     },
     text: {
-        fontSize: 18,
-        color:'black',
+        fontSize: 22,
+        color:'white',
+        fontFamily:'Trebuchet MS',
+        textAlign: 'center',
+        marginTop: 8,
+    
     },
     card: {
         display: 'flex',
         flexDirection: 'column',
     },
     infos: {
-        backgroundColor: 'white',
-        width: 440,
+        backgroundColor: '#6d8193',
+        width: 400,
         height: 50,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
