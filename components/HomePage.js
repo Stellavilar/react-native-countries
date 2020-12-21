@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, View, ScrollView, Text  } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
+import InputComponent from './InputComponent';
 import data from '../openapi.json';
 
 const Homepage = () => {
@@ -9,6 +10,7 @@ const Homepage = () => {
     return (
         <View style={styles.container} >
             <Image source={require('../img/countries.png')}/>
+            <InputComponent />
             <View style={{ width: '100%' }}>
                 <ScrollView 
                     pagingEnabled 
@@ -18,6 +20,7 @@ const Homepage = () => {
                     {
                     data.map((flags, index) => (
                         <TouchableOpacity 
+                            key={flags.name}
                             style={styles.card}
                             onPress={() => Actions.infos({
                                 text: flags.name,
@@ -59,10 +62,12 @@ const styles = StyleSheet.create ({
         borderTopRightRadius: 10
     },
     container: {
-        flex: 1,
+        display: 'flex',
+        justifyContent: 'space-evenly',
         backgroundColor: '#B6D8F9',
         alignItems: 'center',
         justifyContent: 'center',
+        height: '100%'
     },
     text: {
         fontSize: 22,
