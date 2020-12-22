@@ -10,7 +10,7 @@ const Homepage = () => {
     return (
         <View style={styles.container} >
             <Image source={require('../img/countries.png')}/>
-            <InputComponent />
+            <InputComponent data={data}/>
             <View style={{ width: '100%' }}>
                 <ScrollView 
                     pagingEnabled 
