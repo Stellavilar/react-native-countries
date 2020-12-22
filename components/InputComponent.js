@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextInput, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { TextInput, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 
@@ -14,13 +14,15 @@ const InputComponent = ({data}) => {
     //Display results
     const [ display, setDisplayed ] = useState(false);
     
+    //Input event on change
     const handleChange = text => {
         setInputValue(text);
         setDisplayed(true);
     };
 
-    const filteredCountries = countries.filter( country => country.toLowerCase().includes(inputValue.toLowerCase())
-    ).slice(0,5);
+    // //get filtered countries on input change
+    const filteredCountries = countries.filter( country => country.toLowerCase().includes(inputValue.toLowerCase()) 
+    );
 
     useEffect(() => {
         if( inputValue === '') {
@@ -28,7 +30,7 @@ const InputComponent = ({data}) => {
         }else{
             setDisplayed(true)
         }
-    }, [inputValue])
+    }, [inputValue]);
 
     return (
         <View style={styles.container}>
@@ -42,10 +44,16 @@ const InputComponent = ({data}) => {
                 />
             </View>
             { display ? 
-                <Text style={styles.item}>
-                    {filteredCountries}
-                    {/* {inputValue.split(' ').map((country) => country && filteredCountries).join(' ')}                 */}
-                </Text>
+                filteredCountries.map((country, index ) => 
+                <View style={styles.listContainer} >
+                    <Text  
+                        key={index} 
+                        style={styles.item}
+                    >
+                        {country}
+                    </Text>
+               </View> ).slice(0,5)
+               
             : null
             }
     </View>
@@ -66,7 +74,6 @@ const styles = StyleSheet.create ({
 
     searchIcon: {
         padding: 10,
-        // marginBottom: 50
     },
 
     input: {
@@ -77,22 +84,25 @@ const styles = StyleSheet.create ({
         borderRadius: 30,
         padding:10,
         backgroundColor: '#fff',
-        // marginBottom: 50
     },
 
-    results: {
+    item: {
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 10,
+        fontSize: 18,
+        height: 44,
+        color:'black',
+    },
+    listContainer: {
         width: 240,
-        height: 90,
+        height: 50,
         backgroundColor: '#fff',
         alignItems: 'center',
         borderBottomColor: 'gray',
         borderWidth: 1,
         borderRadius: 15,
         marginLeft:50
-
-    },
-    item: {
-        backgroundColor: 'red'
     }
 })
 
