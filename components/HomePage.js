@@ -55,12 +55,13 @@ const Homepage = () => {
 const styles = StyleSheet.create ({
 
     flag: {
-        width: '100%',
-        height: 300,
+        width: 400,
+        height: 230,
         resizeMode: 'cover',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
-        marginTop:20,
+        marginTop:30,
+        marginRight:30,
     },
     container: {
         display: 'flex',

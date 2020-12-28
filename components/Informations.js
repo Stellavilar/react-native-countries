@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 
 const Informations = ({text, capital, people, population, area, flag, languages}) => {
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -18,7 +19,7 @@ const Informations = ({text, capital, people, population, area, flag, languages}
                     Inhabitants: {people}
                 </Text>
                 <Text style={styles.textInfos}>
-                    Number of inhabitants: {population}
+                    Number of inhabitants: {population.toLocaleString('en-US', {maximumFractionDigits:2})}
                 </Text>
                 <Text style={styles.textInfos}>
                     Area: {area + 'km²'}
@@ -67,7 +68,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         fontFamily: 'Trebuchet MS',
-        textDecorationLine: 'underline'
 
     }
 
