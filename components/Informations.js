@@ -22,7 +22,7 @@ const Informations = ({text, capital, people, population, area, flag, languages}
                     Number of inhabitants: {population.toLocaleString('en-US', {maximumFractionDigits:2})}
                 </Text>
                 <Text style={styles.textInfos}>
-                    Area: {area + 'km²'}
+                    Area: {area.toLocaleString('en-US', {maximumFractionDigits:2}) + ' ' + 'km²'}
                 </Text>
                 <Text style={styles.textInfos}>
                     Languages: {languages + ' '}
