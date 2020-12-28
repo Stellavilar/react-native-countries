@@ -59,11 +59,11 @@ const styles = StyleSheet.create ({
         height: 300,
         resizeMode: 'cover',
         borderTopLeftRadius: 10,
-        borderTopRightRadius: 10
+        borderTopRightRadius: 10,
+        marginTop:20,
     },
     container: {
         display: 'flex',
-        justifyContent: 'space-evenly',
         backgroundColor: '#B6D8F9',
         alignItems: 'center',
         justifyContent: 'center',

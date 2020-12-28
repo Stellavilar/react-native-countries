@@ -8,9 +8,6 @@ const InputComponent = ({data}) => {
     //Input value
     const [ inputValue, setInputValue ] = useState('');
 
-    //Get countries names on array
-    const countries = data.map((d)=> d.name);
-
     //Display results
     const [ display, setDisplayed ] = useState(false);
     
@@ -21,7 +18,7 @@ const InputComponent = ({data}) => {
     };
 
     // //get filtered countries on input change
-    const filteredCountries = countries.filter( country => country.toLowerCase().includes(inputValue.toLowerCase()) 
+    const filteredCountries = data.filter( country => country.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 
     useEffect(() => {
@@ -45,14 +42,24 @@ const InputComponent = ({data}) => {
             </View>
             { display ? 
                 filteredCountries.map((country, index ) => 
-                <View style={styles.listContainer} >
-                    <Text  
-                        key={index} 
-                        style={styles.item}
-                    >
-                        {country}
-                    </Text>
-               </View> ).slice(0,5)
+                <TouchableOpacity onPress={() => Actions.infos({
+                    text: country.name,
+                    capital: country.capital,
+                    population: country.population,
+                    area: country.area,
+                    people: country.demonym,
+                    languages: country.languages.map((language)=> language.name),
+                    flag: country.flag
+                }) }>
+                    <View style={styles.listContainer} >
+                        <Text  
+                            key={index} 
+                            style={styles.item}
+                        >
+                            {country.name}
+                        </Text>
+                    </View>
+               </TouchableOpacity> ).slice(0,5)
                
             : null
             }
@@ -68,20 +75,19 @@ const styles = StyleSheet.create ({
 
     inputArea: {
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
     },
 
     searchIcon: {
-        padding: 10,
+        padding: 5,
     },
 
     input: {
         height: 50,
-        width: 240,
+        width: 200,
         borderColor: 'gray',
         borderWidth: 1,
-        borderRadius: 30,
+        borderRadius: 15,
         padding:10,
         backgroundColor: '#fff',
     },
@@ -89,11 +95,12 @@ const styles = StyleSheet.create ({
     item: {
         display: 'flex',
         flexDirection: 'column',
-        padding: 10,
-        fontSize: 18,
-        height: 44,
+        padding: 8,
+        fontSize: 16,
+        height: 35,
         color:'black',
     },
+
     listContainer: {
         width: 240,
         height: 50,
