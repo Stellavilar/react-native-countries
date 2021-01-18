@@ -3,6 +3,7 @@ import { StyleSheet, Image, View, ScrollView, Text, Dimensions  } from 'react-na
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
 import InputComponent from './InputComponent';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import data from '../openapi.json';
 
 //get windows width:
@@ -10,9 +11,20 @@ const screenWidth = Dimensions.get('window').width;
 
 const Homepage = () => {
 
+    //reverse array values
+    const mixedData = data.reverse();
+
     return (
         <View style={styles.container} >
-            <Image source={require('../img/countries.png')}/>
+            <View style={styles.header}>
+                <Image source={require('../img/countries.png')}/>
+                <TouchableOpacity 
+                    style={styles.game}
+                    onPress={() => Actions.game()}
+                    >
+                    <Text style={styles.button}>Let's play!</Text>
+                </TouchableOpacity>
+            </View>
             <InputComponent data={data}/>
             <View style={{ width: '100%' }}>
                 <ScrollView 
@@ -21,7 +33,7 @@ const Homepage = () => {
                     showsHorizontalScrollIndicator={false}
                     style={{ height: 400, width: screenWidth }} >
                     {
-                    data.map((flags, index) => (
+                    mixedData.map((flags, index) => (
                         <TouchableOpacity 
                             key={flags.name}
                             style={{
@@ -61,6 +73,15 @@ const Homepage = () => {
 
 const styles = StyleSheet.create ({
 
+    header: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        width: screenWidth,
+        alignItems: 'center',
+        height: '20%',
+        flex: 1
+    },
     flag: {
         width: screenWidth,
         height: 230,
@@ -83,7 +104,6 @@ const styles = StyleSheet.create ({
         fontFamily:'Trebuchet MS',
         textAlign: 'center',
         marginTop: 8,
-    
     },
     infos: {
         backgroundColor: '#6d8193',
@@ -91,8 +111,19 @@ const styles = StyleSheet.create ({
         height: 50,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
-
-    }
+    },
+    game: {
+        marginRight: 20,
+        borderRadius: 8,
+        backgroundColor:'#6bbc76',
+        width: 120,
+        height: 50,
+    },
+    button: {
+        color: 'white',
+        fontSize: 18,
+        padding: 10, 
+    },
 });
 
 

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { TextInput, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TextInput, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 
@@ -43,16 +43,18 @@ const InputComponent = ({data}) => {
             </View>
             { display ? 
                 filteredCountries.map((country, index ) => 
-                <TouchableOpacity onPress={() => Actions.infos({
-                    text: country.name,
-                    capital: country.capital,
-                    population: country.population,
-                    area: country.area,
-                    people: country.demonym,
-                    languages: country.languages.map((language)=> language.name),
-                    flag: country.flag
+                <TouchableOpacity 
+                    key={index} 
+                    onPress={() => Actions.infos({
+                        text: country.name,
+                        capital: country.capital,
+                        population: country.population,
+                        area: country.area,
+                        people: country.demonym,
+                        languages: country.languages.map((language)=> language.name),
+                        flag: country.flag
                 })}
-                onPressOut={()=> setInputValue('')}
+                    onPressOut={()=> setInputValue('')}
                 >
                     <View style={styles.listContainer} >
                         <Text  
@@ -86,7 +88,7 @@ const styles = StyleSheet.create ({
     },
 
     input: {
-        height: 50,
+        height: 40,
         width: 200,
         borderColor: 'gray',
         borderWidth: 1,
@@ -100,19 +102,19 @@ const styles = StyleSheet.create ({
         flexDirection: 'column',
         padding: 8,
         fontSize: 16,
-        height: 35,
+        height: 25,
         color:'black',
     },
 
     listContainer: {
-        width: 240,
-        height: 50,
+        width: 200,
+        height: 30,
         backgroundColor: '#fff',
         alignItems: 'center',
         borderBottomColor: 'gray',
         borderWidth: 1,
-        borderRadius: 15,
-        marginLeft:50
+        borderRadius: 10,
+        marginLeft:40
     }
 })
 

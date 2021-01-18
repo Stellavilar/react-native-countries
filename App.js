@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 import Homepage from './components/HomePage';
 import Informations from './components/Informations';
+import Game from './components/Game';
 
 const App = () => {
 
@@ -17,6 +18,11 @@ const App = () => {
           key="infos"
           component={Informations}
           title="Informations"
+        />
+        <Scene 
+          key="game"
+          component={Game}
+          title="Game"
         />
       </Scene>
     </Router>
