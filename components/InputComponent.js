@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TextInput, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
@@ -38,6 +38,7 @@ const InputComponent = ({data}) => {
                     placeholder="Search Country..."
                     onChangeText={handleChange}
                     value={inputValue}
+                    clearTextOnFocus={true}
                 />
             </View>
             { display ? 
@@ -50,7 +51,9 @@ const InputComponent = ({data}) => {
                     people: country.demonym,
                     languages: country.languages.map((language)=> language.name),
                     flag: country.flag
-                }) }>
+                })}
+                onPressOut={()=> setInputValue('')}
+                >
                     <View style={styles.listContainer} >
                         <Text  
                             key={index} 
