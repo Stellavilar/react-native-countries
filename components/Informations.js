@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, Dimensions } from 'react-native';
 
 const Informations = ({text, capital, people, population, area, flag, languages}) => {
 
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
         fontFamily:'Trebuchet MS',
         fontSize: 22,
         fontWeight: 'bold',
+        width: '50%'
     },
     flag :{
         height:'100%',
