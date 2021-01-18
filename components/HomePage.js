@@ -1,12 +1,15 @@
 import React from 'react';
-import { StyleSheet, Image, View, ScrollView, Text  } from 'react-native';
+import { StyleSheet, Image, View, ScrollView, Text, Dimensions  } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Actions } from 'react-native-router-flux';
 import InputComponent from './InputComponent';
 import data from '../openapi.json';
 
+//get windows width:
+const screenWidth = Dimensions.get('window').width;
+
 const Homepage = () => {
-   
+
     return (
         <View style={styles.container} >
             <Image source={require('../img/countries.png')}/>
@@ -16,12 +19,16 @@ const Homepage = () => {
                     pagingEnabled 
                     horizontal 
                     showsHorizontalScrollIndicator={false}
-                    style={{ height: 400, width: '100%' }} >
+                    style={{ height: 400, width: screenWidth }} >
                     {
                     data.map((flags, index) => (
                         <TouchableOpacity 
                             key={flags.name}
-                            style={styles.card}
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                width: screenWidth
+                            }}
                             onPress={() => Actions.infos({
                                 text: flags.name,
                                 capital: flags.capital,
@@ -55,7 +62,7 @@ const Homepage = () => {
 const styles = StyleSheet.create ({
 
     flag: {
-        width: 400,
+        width: screenWidth,
         height: 230,
         resizeMode: 'cover',
         borderTopLeftRadius: 10,
@@ -68,7 +75,7 @@ const styles = StyleSheet.create ({
         backgroundColor: '#B6D8F9',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100%'
+        height: '100%',
     },
     text: {
         fontSize: 22,
@@ -78,13 +85,9 @@ const styles = StyleSheet.create ({
         marginTop: 8,
     
     },
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
     infos: {
         backgroundColor: '#6d8193',
-        width: 400,
+        width: screenWidth,
         height: 50,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,

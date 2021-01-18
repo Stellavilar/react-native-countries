@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 const Informations = ({text, capital, people, population, area, flag, languages}) => {
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} key={capital} >
             <View style={styles.header}>
                 <Text style={styles.headerText}>
                     {text}
